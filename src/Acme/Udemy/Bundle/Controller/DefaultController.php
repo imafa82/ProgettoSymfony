@@ -8,10 +8,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/prova/{nome}")
      */
-    public function indexAction()
+    public function indexAction($nome)
     {
-        return $this->render('AcmeUdemyBundle:Default:index.html.twig');
+        $this->get('logger')->debug("debug di prova");
+        $customLog = $this->get('monolog.logger.udemy');
+        $this->get('app.hello_world')->saluta('ciao');
+        $customLog->debug('ahooo');
+        return $this->render('AcmeUdemyBundle:Default:index.html.twig', array(
+            'nome'=> $nome
+        ));
     }
 }

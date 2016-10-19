@@ -2,3 +2,11 @@ services:
 #    acme_udemy.example:
 #        class: Acme\Udemy\Bundle\Example
 #        arguments: ["@service_id", "plain_value", %parameter%]
+parameters:
+    app.nome: 'Massy'
+
+services:
+    app.hello_world:
+        class: Acme\Udemy\Bundle\helloWorld
+        arguments: ["@logger", "%app.nome%"]
+     
