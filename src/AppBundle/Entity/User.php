@@ -31,7 +31,15 @@ class User
 
     /**
      * @var string
-     *
+     * @Assert\Image(
+     * maxSize="2000k",
+     * minHeight = "100",
+     * minWidth = "100",
+     * maxHeight = "1200",
+     * maxWidth = "1200",
+     * mimeTypes = {"image/png", "image/jpeg"}
+     * )
+     * @Assert\NotBlank()
      * @ORM\Column(name="avatar", type="string", length=255)
      */
     private $avatar;
