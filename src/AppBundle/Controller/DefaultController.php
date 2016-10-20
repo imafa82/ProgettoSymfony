@@ -38,6 +38,7 @@ class DefaultController extends Controller
              * @var $file UploadedFile
              */
             $fileName = $this->get('app.avatar_upload')->upload($user->getAvatar());
+            $thumb = $this->get('app.avatar_resize')->resizeImage($fileName);
             $user->setAvatar($fileName);
             $em->persist($user);
             $em->flush();
