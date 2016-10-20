@@ -2,8 +2,13 @@
 
 {% block body %}
     <h1>Create Users</h1>
-    {{form_start(form)}}
-    {{form_widget(form)}}
+    {{form_start(form,{'attr':{'novalidate':'novalidate'}})}}
+    <div style="background-color: red;">
+    {{form_label(form.name)}}
+    {{form_errors(form.name)}}
+    {{form_widget(form.name)}}
+    </div>
+    {{form_row(form.avatar)}}
     <button type="submit">Crea Utente</button>
     {{form_end(form)}}
 {% endblock %}
