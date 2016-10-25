@@ -3,6 +3,10 @@
 namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;
+use AppBundle\Entity\Utente;
+use AppBundle\Entity\utenti;
+use AppBundle\Form\UtenteType;
+use AppBundle\Form\utentiType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -74,6 +78,26 @@ class DefaultController extends Controller
             return $this->redirectToRoute('homepage');
         }
         return $this->render('default/users.html.twig', array('form' => $form->createView()));
+    }
+    
+    /**
+     * @Route("/utente", name="utente_edit")
+     */
+    public function editUtente(Request $request)
+    {
+        $utente = new Utente();
+        $form = $this->createForm(UtenteType::class);
+         return $this->render('default/utente.html.twig', array('form' => $form->createView()));
+    }
+    
+    /**
+     * @Route("/utenti", name="utenti_edit")
+     */
+    public function editUtenti(Request $request)
+    {
+        $utenti = new utenti();
+        $form = $this->createForm(UtentiType::class);
+         return $this->render('default/utente.html.twig', array('form' => $form->createView()));
     }
     
 }

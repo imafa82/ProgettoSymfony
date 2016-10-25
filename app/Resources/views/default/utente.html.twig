@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Create Users</h1>
+    {{form_start(form,{'attr':{'novalidate':'novalidate'}} )}}
+    {{form_widget(form)}}
+    <button type="submit">Crea Utente</button>
+    {{form_end(form)}}
+{% endblock %}
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{ asset('js/form.js') }}"></script>
+{% endblock javascripts %}
