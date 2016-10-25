@@ -32,11 +32,11 @@ class User
     /**
      * @var string
      * @Assert\Image(
-     * maxSize="2000k",
+     * maxSize="3000k",
      * minHeight = "100",
      * minWidth = "100",
-     * maxHeight = "1200",
-     * maxWidth = "1200",
+     * maxHeight = "2200",
+     * maxWidth = "2200",
      * mimeTypes = {"image/png", "image/jpeg"},
      * mimeTypesMessage = "Sono permessi solo png e jpg"
      * )

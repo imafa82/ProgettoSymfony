@@ -10,10 +10,10 @@ parameters:
 services:
     app.avatar_upload:
         class: AppBundle\FileUploader
-        arguments: ["%upload_dir%"]
+        arguments: ["%upload_dir%", "@app.avatar_resize"] 
 
     app.avatar_resize:
         class: AppBundle\FileResizer
-        arguments: ["%upload_dir%", "%app.avatar_size%"]
+        arguments: ["%upload_dir%", "%app.avatar_size%", "@filesystem"]
 
 
