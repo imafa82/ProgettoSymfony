@@ -2,11 +2,15 @@
 
 {% block body %}
     <h1>Create Users</h1>
-    {{form_start(form,{'attr':{'novalidate':'novalidate'}} )}}
-    {{form_widget(form)}}
-    <button type="submit">Crea Utente</button>
-    {{form_end(form)}}
+    <div id="user">
+        {{form_start(form,{'attr':{'id':'form-user','novalidate':'novalidate'}} )}}
+        {{form_widget(form)}}
+        <button type="submit">Crea Utente</button>
+        {{form_end(form)}}
+    </div>
+    <div id="feedback"></div>
 {% endblock %}
+
 {% block javascripts %}
     {{parent()}}
     <script src="{{ asset('js/form.js') }}"></script>

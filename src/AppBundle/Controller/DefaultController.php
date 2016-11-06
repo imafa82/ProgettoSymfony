@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -86,7 +87,30 @@ class DefaultController extends Controller
     public function editUtente(Request $request)
     {
         $utente = new Utente();
-        $form = $this->createForm(UtenteType::class);
+        $form = $this->createForm(UtenteType::class, $utente);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $request->isXmlHttpRequest()){
+            $response = new JsonResponse();
+            if($form->isValid()){
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($utente);
+                $em->flush();
+                $out['status'] = 'OK';
+                $out['msg'] = 'SUCCESS';
+                $response->setData($out);
+                return $response;
+            } else {
+                $errors = $form->getErrors(true, true);
+                $err = array();
+                $msg['status'] = 'KO';
+                foreach ($errors as $error){
+                    $err[] = $error->getMessage()."<br>";
+                }
+                $response->setData(array('status' => 'KO', 'errors' => $err));
+                return $response;
+
+            }
+        }
          return $this->render('default/utente.html.twig', array('form' => $form->createView()));
     }
     
@@ -96,7 +120,22 @@ class DefaultController extends Controller
     public function editUtenti(Request $request)
     {
         $utenti = new utenti();
-        $form = $this->createForm(UtentiType::class);
+        $form = $this->createForm(UtentiType::class, $utenti);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $request->isXmlHttpRequest()){
+            $response = new JsonResponse();
+            if($form->isValid()){
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($utenti);
+                $em->flush();
+                $out['status'] = 'OK';
+                $out['msg'] = 'SUCCESS';
+                $response->setData($out);
+                return $response;
+            } else {
+                
+            }
+        }
          return $this->render('default/utente.html.twig', array('form' => $form->createView()));
     }
     
